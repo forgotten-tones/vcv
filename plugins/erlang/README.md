@@ -14,4 +14,3 @@ Development Resources:
 * https://vcvrack.com/downloads/ (SDK downloads)
 * https://github.com/saleyn/eixx
 * https://www.erlang.org/doc/man/ei.html
-* 
