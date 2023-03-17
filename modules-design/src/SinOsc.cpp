@@ -48,25 +48,26 @@ struct SinOscWidget : ModuleWidget {
     setModule(module);
     setPanel(createPanel(asset::plugin(pluginInstance, "res/SinOsc.svg")));
 
-    addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
+    addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, 1)));
     addChild(
-        createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));
+        createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 1)));
     addChild(createWidget<ScrewSilver>(
-        Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
-    addChild(createWidget<ScrewSilver>(Vec(
-        box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
+        Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH - 1)));
+    addChild(
+        createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH,
+                                      RACK_GRID_HEIGHT - RACK_GRID_WIDTH - 1)));
 
-    addParam(createParamCentered<RoundBlackKnob>(mm2px(Vec(15.24, 46.063)),
+    addParam(createParamCentered<RoundBlackKnob>(mm2px(Vec(15.24, 48.957)),
                                                  module, SinOsc::PITCH_PARAM));
 
-    addInput(createInputCentered<PJ301MPort>(mm2px(Vec(15.24, 77.478)), module,
+    addInput(createInputCentered<PJ301MPort>(mm2px(Vec(15.24, 75.824)), module,
                                              SinOsc::PITCH_INPUT));
 
-    addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(15.24, 108.713)),
+    addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(15.24, 102.949)),
                                                module, SinOsc::SINE_OUTPUT));
 
     addChild(createLightCentered<MediumLight<RedLight>>(
-        mm2px(Vec(15.24, 25.81)), module, SinOsc::BLINK_LIGHT));
+        mm2px(Vec(15.24, 24.713)), module, SinOsc::BLINK_LIGHT));
   }
 };
 
