@@ -1,3 +1,19 @@
+# VCV Rack
+/*/build
+/*/dist
+/*/dep
+
+# Mac
+*.DS_Store
+
+
+# VS Code
+*.vscode
+
+# Ignored graphics
+*.afdesign
+*-dont-use.svg
+
 # Prerequisites
 *.d
 
@@ -30,17 +46,3 @@
 *.exe
 *.out
 *.app
-
-# Mac
-.DS_Store
-
-# VCV Rack
-/build
-/dist
-
-# VS Code
-.vscode
-
-# Ignored graphics
-*.afdesign
-*-dont-use.svg
