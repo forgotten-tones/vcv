@@ -1,22 +1,41 @@
 #include "plugin.hpp"
 
-struct SinOsc : Module {
+struct SinOsc : Module
+{
   float phase = 0.f;
   float blinkPhase = 0.f;
 
-  enum ParamId { PITCH_PARAM, PARAMS_LEN };
-  enum InputId { PITCH_INPUT, INPUTS_LEN };
-  enum OutputId { SINE_OUTPUT, OUTPUTS_LEN };
-  enum LightId { BLINK_LIGHT, LIGHTS_LEN };
+  enum ParamId
+  {
+    PITCH_PARAM,
+    PARAMS_LEN
+  };
+  enum InputId
+  {
+    PITCH_INPUT,
+    INPUTS_LEN
+  };
+  enum OutputId
+  {
+    SINE_OUTPUT,
+    OUTPUTS_LEN
+  };
+  enum LightId
+  {
+    BLINK_LIGHT,
+    LIGHTS_LEN
+  };
 
-  SinOsc() {
+  SinOsc()
+  {
     config(PARAMS_LEN, INPUTS_LEN, OUTPUTS_LEN, LIGHTS_LEN);
     configParam(PITCH_PARAM, 0.f, 1.f, 0.f, "");
     configInput(PITCH_INPUT, "");
     configOutput(SINE_OUTPUT, "");
   }
 
-  void process(const ProcessArgs &args) override {
+  void process(const ProcessArgs& args) override
+  {
     // Compute the frequency from the pitch parameter and input
     float pitch = params[PITCH_PARAM].getValue();
     pitch += inputs[PITCH_INPUT].getVoltage();
@@ -43,32 +62,32 @@ struct SinOsc : Module {
   }
 };
 
-struct SinOscWidget : ModuleWidget {
-  SinOscWidget(SinOsc *module) {
+struct SinOscWidget : ModuleWidget
+{
+  SinOscWidget(SinOsc* module)
+  {
     setModule(module);
     setPanel(createPanel(asset::plugin(pluginInstance, "res/SinOsc.svg")));
 
     addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, 1)));
-    addChild(
-        createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 1)));
+    addChild(createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 1)));
     addChild(createWidget<ScrewSilver>(
-        Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH - 1)));
-    addChild(
-        createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH,
-                                      RACK_GRID_HEIGHT - RACK_GRID_WIDTH - 1)));
+      Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH - 1)));
+    addChild(createWidget<ScrewSilver>(
+      Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH - 1)));
 
-    addParam(createParamCentered<RoundBlackKnob>(mm2px(Vec(15.24, 48.957)),
-                                                 module, SinOsc::PITCH_PARAM));
+    addParam(createParamCentered<RoundBlackKnob>(
+      mm2px(Vec(15.24, 48.957)), module, SinOsc::PITCH_PARAM));
 
-    addInput(createInputCentered<PJ301MPort>(mm2px(Vec(15.24, 75.824)), module,
-                                             SinOsc::PITCH_INPUT));
+    addInput(createInputCentered<PJ301MPort>(
+      mm2px(Vec(15.24, 75.824)), module, SinOsc::PITCH_INPUT));
 
-    addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(15.24, 102.949)),
-                                               module, SinOsc::SINE_OUTPUT));
+    addOutput(createOutputCentered<PJ301MPort>(
+      mm2px(Vec(15.24, 102.949)), module, SinOsc::SINE_OUTPUT));
 
     addChild(createLightCentered<MediumLight<RedLight>>(
-        mm2px(Vec(15.24, 24.713)), module, SinOsc::BLINK_LIGHT));
+      mm2px(Vec(15.24, 24.713)), module, SinOsc::BLINK_LIGHT));
   }
 };
 
-Model *modelSinOsc = createModel<SinOsc, SinOscWidget>("SinOsc");
+Model* modelSinOsc = createModel<SinOsc, SinOscWidget>("SinOsc");
