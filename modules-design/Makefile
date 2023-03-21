@@ -1,4 +1,5 @@
-# If RACK_DIR is not defined when calling the Makefile, default to two directories above
+# If RACK_DIR is not defined when calling the Makefile, default to two
+# directories above
 RACK_DIR ?= ../..
 
 # FLAGS will be passed to both the C and C++ compiler
@@ -6,8 +7,9 @@ FLAGS +=
 CFLAGS +=
 CXXFLAGS +=
 
-# Careful about linking to shared libraries, since you can't assume much about the user's environment and library search path.
-# Static libraries are fine, but they should be added to this plugin's build system.
+# Careful about linking to shared libraries, since you can't assume much about
+# the user's environment and library search path. Static libraries are fine, but
+# they should be added to this plugin's build system.
 LDFLAGS +=
 
 # Add .cpp files to the build
@@ -19,20 +21,21 @@ DISTRIBUTABLES += res
 DISTRIBUTABLES += $(wildcard LICENSE*)
 DISTRIBUTABLES += $(wildcard presets)
 
-reminder:
-	@echo To build on macos / Apple M1, you need to start your terminal
-	@echo session with this:
-	@echo
-	@echo arch -x86_64 /bin/bash
-	@echo
+RACK_INSTALL = ~/Documents/Rack2
 
 # Include the Rack plugin Makefile framework
 include $(RACK_DIR)/plugin.mk
 
-rebuild: clean all dist install
+native-rebuild: clean all dist install
+
+rebuild:
+	@arch -x86_64 make native-rebuild
+
+rebuild-log: rebuild
+	@tail -f $(RACK_INSTALL)/log.txt
 
 uninstall:
-	@rm -rf ~/Documents/Rack2/plugins/ForgottenTonesDesign/
+	@rm -rf $(RACK_INSTALL)/plugins/ForgottenTonesDesign/
 
 log:
-	@grep Forgotten ~/Documents/Rack2/log.txt
+	@grep Forgotten $(RACK_INSTALL)/log.txt
