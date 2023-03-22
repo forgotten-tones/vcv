@@ -18,8 +18,15 @@
             "name": "Sin Osc",
             "description": "A simple sine oscillator",
             "tags": [
-                "oscillator",
-                "utility"
+                "oscillator"
+            ]
+        },
+        {
+            "slug": "SinOscRust",
+            "name": "Sin Osc (Rust)",
+            "description": "A simple sine oscillator",
+            "tags": [
+                "oscillator"
             ]
         }
     ]

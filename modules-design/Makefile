@@ -26,7 +26,7 @@ RACK_INSTALL = ~/Documents/Rack2
 # Include the Rack plugin Makefile framework
 include $(RACK_DIR)/plugin.mk
 
-native-rebuild: clean all dist install
+native-rebuild: clean rust all dist install
 
 rebuild:
 	@arch -x86_64 make native-rebuild
@@ -39,3 +39,12 @@ uninstall:
 
 log:
 	@grep Forgotten $(RACK_INSTALL)/log.txt
+
+rust-setup:
+	@cargo install --force cbindgen
+
+rust-clean:
+	@rm src/rust.hpp
+
+rust: rust-clean
+	@cargo build

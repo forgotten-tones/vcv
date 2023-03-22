@@ -48,4 +48,4 @@
 *.app
 
 # Rust
-/rust/target
+/*/target
