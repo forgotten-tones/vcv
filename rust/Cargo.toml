@@ -4,7 +4,7 @@ version = "0.0.1"
 edition = "2021"
 
 [dependencies]
+cxx = "1.0"
 
 [build-dependencies]
-bindgen = "0.64"
-include_dir = "0.7"
+cxx-build = "1.0"
