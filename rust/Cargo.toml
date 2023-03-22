@@ -1,0 +1,10 @@
+[package]
+name = "vcvrack-rs"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+
+[build-dependencies]
+bindgen = "0.64"
+include_dir = "0.7"
