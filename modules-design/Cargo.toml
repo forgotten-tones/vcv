@@ -4,6 +4,12 @@ version = "0.0.1"
 edition = "2021"
 
 [dependencies]
+num = "0.4"
 
 [build-dependencies]
 cbindgen = "0.24"
+
+[lib]
+# name = "forgotten_tones"
+crate-type = ["staticlib"]
+# crate-type = ["cdylib"]

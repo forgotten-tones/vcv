@@ -28,4 +28,10 @@ extern "C" {
 
 void root(ParamId p, InputId i, OutputId o, LightId l);
 
+double tftp_freq(double current, double increment);
+
+double tftp_brightness(double phase);
+
+double tftp_sin(double phase);
+
 } // extern "C"

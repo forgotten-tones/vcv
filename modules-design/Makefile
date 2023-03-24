@@ -4,13 +4,13 @@ RACK_DIR ?= ../..
 
 # FLAGS will be passed to both the C and C++ compiler
 FLAGS +=
-CFLAGS +=
+CFLAGS += -fPIC
 CXXFLAGS +=
 
 # Careful about linking to shared libraries, since you can't assume much about
 # the user's environment and library search path. Static libraries are fine, but
 # they should be added to this plugin's build system.
-LDFLAGS +=
+LDFLAGS += -L./target/debug
 
 # Add .cpp files to the build
 SOURCES += $(wildcard src/*.cpp)
@@ -44,7 +44,15 @@ rust-setup:
 	@cargo install --force cbindgen
 
 rust-clean:
-	@rm src/rust.hpp
+	@rm -f src/rust.hpp src/libforgotten_tones.a
 
 rust: rust-clean
-	@cargo build
+	@cargo build -vv
+	@cargo build -vv
+	@mkdir -p build/src
+	@ranlib target/debug/libforgotten_tones.a
+	@cp -p target/debug/libforgotten_tones.a src
+	@cp -p target/debug/libforgotten_tones.a ./build/src
+
+check-symbols:
+	nm src/libforgotten_tones.a 2> /dev/null |grep tftp
