@@ -21,10 +21,15 @@ DISTRIBUTABLES += res
 DISTRIBUTABLES += $(wildcard LICENSE*)
 DISTRIBUTABLES += $(wildcard presets)
 
-RACK_INSTALL = ~/Documents/Rack2
-
 # Include the Rack plugin Makefile framework
 include $(RACK_DIR)/plugin.mk
+
+RACK_INSTALL = ~/Documents/Rack2
+PLUGINS = $(RACK_INSTALL)/plugins
+TFPT_DESIGN = $(PLUGINS)/ForgottenTonesDesign
+
+$(RACK_INSTALL):
+	@mkdir -p $(RACK_INSTALL)
 
 native-rebuild: clean all dist install
 
@@ -35,7 +40,13 @@ rebuild-log: rebuild
 	@tail -f $(RACK_INSTALL)/log.txt
 
 uninstall:
-	@rm -rf $(RACK_INSTALL)/plugins/ForgottenTonesDesign/
+	@rm -rf $(TFPT_DESIGN)
 
 log:
 	@grep Forgotten $(RACK_INSTALL)/log.txt
+
+show-plugins:
+	ls -al $(PLUGINS)
+
+show-installed:
+	ls -al $(TFPT)*
