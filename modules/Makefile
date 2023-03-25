@@ -24,6 +24,7 @@ DISTRIBUTABLES += $(wildcard presets)
 # Include the Rack plugin Makefile framework
 include $(RACK_DIR)/plugin.mk
 
+RACK_APP = ~/Applications/Audio/VCV\ Rack\ 2\ Pro
 RACK_INSTALL = ~/Documents/Rack2
 PLUGINS = $(RACK_INSTALL)/plugins
 TFPT = $(PLUGINS)/ForgottenTones
@@ -50,3 +51,8 @@ show-plugins:
 
 show-installed:
 	ls -al $(TFPT)*
+
+open:
+	open -a $(RACK_APP)
+
+rebuild-open: rebuild open

@@ -1,53 +1,44 @@
 #include "plugin.hpp"
 #include "rack.hpp"
 
-struct TFTPNotes : Module
-{
+struct TFTPNotes : Module {
   std::string text;
   bool dirty = false;
   NVGcolor bgColor = nvgRGBA(0.0, 0.0, 0.0, 0.0);
   NVGcolor color = nvgRGB(0x00, 0xff, 0x00);
 
-  void onReset() override
-  {
+  void onReset() override {
     text = "";
     dirty = true;
   }
 
-  void fromJson(json_t* rootJ) override
-  {
+  void fromJson(json_t *rootJ) override {
     Module::fromJson(rootJ);
     // In <1.0, module used "text" property at root level.
-    json_t* textJ = json_object_get(rootJ, "text");
-    if (textJ)
-      text = json_string_value(textJ);
+    json_t *textJ = json_object_get(rootJ, "text");
+    if (textJ) text = json_string_value(textJ);
     dirty = true;
   }
 
-  json_t* dataToJson() override
-  {
-    json_t* rootJ = json_object();
+  json_t *dataToJson() override {
+    json_t *rootJ = json_object();
     json_object_set_new(rootJ, "text", json_stringn(text.c_str(), text.size()));
     return rootJ;
   }
 
-  void dataFromJson(json_t* rootJ) override
-  {
-    json_t* textJ = json_object_get(rootJ, "text");
-    if (textJ)
-      text = json_string_value(textJ);
+  void dataFromJson(json_t *rootJ) override {
+    json_t *textJ = json_object_get(rootJ, "text");
+    if (textJ) text = json_string_value(textJ);
     dirty = true;
   }
 };
 
-struct TFTPNotesTextField : LedDisplayTextField
-{
-  TFTPNotes* module;
+struct TFTPNotesTextField : LedDisplayTextField {
+  TFTPNotes *module;
   NVGcolor bgColor = nvgRGBA(0.0, 0.0, 0.0, 0.0);
   NVGcolor color = nvgRGB(0x00, 0xff, 0x00);
 
-  void step() override
-  {
+  void step() override {
     LedDisplayTextField::step();
     if (module && module->dirty) {
       setText(module->text);
@@ -55,20 +46,16 @@ struct TFTPNotesTextField : LedDisplayTextField
     }
   }
 
-  void onChange(const ChangeEvent& e) override
-  {
-    if (module)
-      module->text = getText();
+  void onChange(const ChangeEvent &e) override {
+    if (module) module->text = getText();
   }
 };
 
-struct TFTPNotesDisplay : LedDisplay
-{
+struct TFTPNotesDisplay : LedDisplay {
   NVGcolor bgColor = nvgRGBA(0.0, 0.0, 0.0, 0.0);
   NVGcolor color = nvgRGB(0x00, 0xff, 0x00);
-  void setModule(TFTPNotes* module)
-  {
-    TFTPNotesTextField* textField = createWidget<TFTPNotesTextField>(Vec(1.2, 0));
+  void setModule(TFTPNotes *module) {
+    TFTPNotesTextField *textField = createWidget<TFTPNotesTextField>(Vec(1.2, 0));
     textField->box.size = box.size;
     textField->multiline = true;
     textField->module = module;
@@ -76,21 +63,21 @@ struct TFTPNotesDisplay : LedDisplay
   }
 };
 
-struct TFTPNotesWidget : ModuleWidget
-{
-  TFTPNotesDisplay* notesDisplay;
+struct TFTPNotesWidget : ModuleWidget {
+  TFTPNotesDisplay *notesDisplay;
 
-  TFTPNotesWidget(TFTPNotes* module)
-  {
+  TFTPNotesWidget(TFTPNotes *module) {
     setModule(module);
     setPanel(createPanel(asset::plugin(pluginInstance, "res/TFTPNotes.svg")));
 
-    addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
-    addChild(createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));
-    addChild(createWidget<ScrewSilver>(
-      Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
-    addChild(createWidget<ScrewSilver>(
-      Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
+    Vec tlScrew = Vec(RACK_GRID_WIDTH, 0);
+    Vec trScrew = Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0);
+    Vec blScrew = Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH);
+    Vec brScrew = Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH);
+    addChild(createWidget<ScrewSilver>(tlScrew));
+    addChild(createWidget<ScrewSilver>(trScrew));
+    addChild(createWidget<ScrewSilver>(blScrew));
+    addChild(createWidget<ScrewSilver>(brScrew));
 
     notesDisplay = createWidget<TFTPNotesDisplay>(mm2px(Vec(4.8, 10.5)));
     notesDisplay->box.size = mm2px(Vec(92, 111.5));
@@ -98,9 +85,8 @@ struct TFTPNotesWidget : ModuleWidget
     addChild(notesDisplay);
   }
 
-  void step() override
-  {
-    TFTPNotes* wModule = dynamic_cast<TFTPNotes*>(module);
+  void step() override {
+    TFTPNotes *wModule = dynamic_cast<TFTPNotes *>(module);
     if (wModule->dirty) {
       notesDisplay->color = wModule->color;
       notesDisplay->bgColor = wModule->bgColor;
@@ -110,4 +96,4 @@ struct TFTPNotesWidget : ModuleWidget
   }
 };
 
-Model* modelTFTPNotes = createModel<TFTPNotes, TFTPNotesWidget>("TFTPNotes");
+Model *modelTFTPNotes = createModel<TFTPNotes, TFTPNotesWidget>("TFTPNotes");
