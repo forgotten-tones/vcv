@@ -2,6 +2,9 @@
 /*/build
 /*/dist
 /*/dep
+/*/plugin.so
+/*/plugin.dylib
+/*/plugin.dll
 
 # Mac
 *.DS_Store
@@ -46,3 +49,6 @@
 *.exe
 *.out
 *.app
+
+# Misc
+/workbench
