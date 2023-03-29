@@ -1,9 +1,21 @@
+ifdef DESIGN
+FLAGS += -DDESIGN=1
+FLAGS += -I../modules-design/include
+SOURCES += $(wildcard ../modules-design/src/*.cpp)
+endif
+
+ifdef DEV
+FLAGS += -DDEV=1
+FLAGS += -I../modules-dev/include
+SOURCES += $(wildcard ../modules-dev/src/*.cpp)
+endif
+
 # If RACK_DIR is not defined when calling the Makefile, default to two
 # directories above
 RACK_DIR ?= ../..
 
 # FLAGS will be passed to both the C and C++ compiler
-FLAGS +=
+FLAGS += -I./include
 CFLAGS +=
 CXXFLAGS +=
 
@@ -36,6 +48,15 @@ native-rebuild: clean all dist install
 
 rebuild:
 	@arch -x86_64 make native-rebuild
+
+design:
+	@$(MAKE) rebuild DESIGN=1
+
+dev:
+	@$(MAKE) rebuild DEV=1
+
+complete:
+	@$(MAKE) rebuild DEV=1 DESIGN=1
 
 rebuild-log: rebuild
 	@tail -f $(RACK_INSTALL)/log.txt

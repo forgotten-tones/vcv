@@ -6,5 +6,4 @@
 using namespace rack;
 using namespace tftp;
 
-// Declare the Plugin, defined in plugin.cpp
-extern Plugin* pluginInstance;
+extern Plugin* tftpPlugins;

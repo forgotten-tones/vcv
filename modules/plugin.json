@@ -1,7 +1,7 @@
 {
     "slug": "ForgottenTones",
     "name": "Forgotten Tones",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "license": "Apache-2.0",
     "brand": "Forgotten Tones",
     "author": "The Forgotten Tones Project",
@@ -14,11 +14,21 @@
     "changelogUrl": "",
     "modules": [
         {
-            "slug": "TFTPNotes",
+            "status": "DEV",
+            "slug": "Notes",
             "name": "Notes",
             "description": "Keep patch notes in your rack",
             "tags": [
                 "utility"
+            ]
+        },
+        {
+            "status": "DESIGN",
+            "slug": "SinOsc",
+            "name": "Simple Osc",
+            "description": "A simple sine oscillator",
+            "tags": [
+                "oscillator"
             ]
         }
     ]
