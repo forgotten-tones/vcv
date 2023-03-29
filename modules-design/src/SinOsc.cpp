@@ -37,21 +37,12 @@ void SinOsc::update_phase(const ProcessArgs& args) {
   if (phase >= 0.5f) phase -= 1.f;
 }
 
-struct SinOscWidget : ModuleWidget {
+struct SinOscWidget : TFTPModuleWidget {
   SinOscWidget(SinOsc* module) {
     setModule(module);
     setPanel(createPanel(asset::plugin(pluginInstance, "res/SinOsc.svg")));
 
-    // TODO: Move this into createScrews func
-    Vec tlScrewPos = Vec(RACK_GRID_WIDTH, 0);
-    Vec trScrewPos = Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0);
-    Vec blScrewPos = Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH);
-    Vec brScrewPos = Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH);
-
-    addChild(createWidget<ScrewSilver>(tlScrewPos));
-    addChild(createWidget<ScrewSilver>(trScrewPos));
-    addChild(createWidget<ScrewSilver>(blScrewPos));
-    addChild(createWidget<ScrewSilver>(brScrewPos));
+    addScrews();
 
     Vec pitchKnobPos = mm2px(Vec(15.24, 48.957));
     Vec voctInPos = mm2px(Vec(15.24, 75.824));

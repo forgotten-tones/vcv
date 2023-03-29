@@ -6,7 +6,7 @@ extern Model* modelSinOsc;
 
 namespace tftp {
 
-struct SinOsc : Module {
+struct SinOsc : TFTPModule {
   // A param is a knob, switch, button, slider, etc.; red #ff0000
   enum class ParamId { pitch, len };
   // An input; green #00ff00
