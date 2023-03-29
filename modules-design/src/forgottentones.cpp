@@ -1,4 +1,4 @@
-#include "plugin.hpp"
+#include "forgottentones.hpp"
 #include "SinOsc.hpp"
 
 Plugin* pluginInstance;
