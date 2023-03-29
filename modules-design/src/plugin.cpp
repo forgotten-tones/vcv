@@ -1,8 +1,9 @@
 #include "plugin.hpp"
+#include "SinOsc.hpp"
 
 Plugin* pluginInstance;
 
-void init(Plugin* p) {
+void init(rack::Plugin* p) {
   pluginInstance = p;
 
   // Add modules here
