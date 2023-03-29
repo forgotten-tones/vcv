@@ -40,8 +40,7 @@ void SinOsc::update_phase(const ProcessArgs& args) {
 struct SinOscWidget : TFTPModuleWidget {
   SinOscWidget(SinOsc* module) {
     setModule(module);
-    setPanel(createPanel(asset::plugin(pluginInstance, "res/SinOsc.svg")));
-
+    setPanel("SinOsc");
     addScrews();
 
     Vec pitchKnobPos = mm2px(Vec(15.24, 48.957));
@@ -49,14 +48,14 @@ struct SinOscWidget : TFTPModuleWidget {
     Vec voctOutPos = mm2px(Vec(15.24, 102.949));
     Vec litePos = mm2px(Vec(15.24, 24.713));
 
-    int knob_pitch_id = static_cast<int>(SinOsc::ParamId::pitch);
-    int cv_pitch_id = static_cast<int>(SinOsc::InputId::pitch);
-    int cv_out_id = static_cast<int>(SinOsc::OutputId::sin);
-    int lite_id = static_cast<int>(SinOsc::LightId::blink);
-    addParam(createParamCentered<RoundBlackKnob>(pitchKnobPos, module, knob_pitch_id));
-    addInput(createInputCentered<PJ301MPort>(voctInPos, module, cv_pitch_id));
-    addOutput(createOutputCentered<PJ301MPort>(voctOutPos, module, cv_out_id));
-    addChild(createLightCentered<MediumLight<RedLight>>(litePos, module, lite_id));
+    int knobPitchId = static_cast<int>(SinOsc::ParamId::pitch);
+    int cvPitchId = static_cast<int>(SinOsc::InputId::pitch);
+    int cvOutId = static_cast<int>(SinOsc::OutputId::sin);
+    int liteId = static_cast<int>(SinOsc::LightId::blink);
+    addParam(createParamCentered<RoundBlackKnob>(pitchKnobPos, module, knobPitchId));
+    addInput(createInputCentered<PJ301MPort>(voctInPos, module, cvPitchId));
+    addOutput(createOutputCentered<PJ301MPort>(voctOutPos, module, cvOutId));
+    addChild(createLightCentered<MediumLight<RedLight>>(litePos, module, liteId));
   }
 };
 

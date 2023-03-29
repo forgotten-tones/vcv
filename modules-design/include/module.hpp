@@ -12,6 +12,7 @@ struct TFTPModule : Module {
 
 struct TFTPModuleWidget : ModuleWidget {
   void addScrews();
+  void setPanel(std::string);
 };
 
 }  // namespace tftp
