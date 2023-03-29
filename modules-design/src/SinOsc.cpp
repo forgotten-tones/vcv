@@ -1,31 +1,44 @@
 #include "SinOsc.hpp"
 
-void tftp::SinOsc::process(const ProcessArgs& args) {
-  // Compute the frequency from the pitch parameter and input
-  float pitch = params[tftp::SinOsc::PITCH_PARAM].getValue();
-  pitch += inputs[tftp::SinOsc::PITCH_INPUT].getVoltage();
-  pitch = clamp(pitch, -4.f, 4.f);
+using namespace tftp;
+
+void SinOsc::blink(const ProcessArgs& args, float hz) {
+  blinkPhase += (args.sampleTime * hz);
+  if (blinkPhase >= hz) blinkPhase -= hz;
+  lights[static_cast<int>(SinOsc::LightId::blink)].setBrightness(blinkPhase < 0.5f ? 1.f : 0.f);
+}
+
+float SinOsc::freq() {
   // The default pitch is C4 = 261.6256f
-  float freq = dsp::FREQ_C4 * std::pow(2.f, pitch);
+  return dsp::FREQ_C4 * std::pow(2.f, pitch());
+}
 
-  // Accumulate the phase
-  phase += freq * args.sampleTime;
-  if (phase >= 0.5f) phase -= 1.f;
+float SinOsc::pitch() {
+  float pitch = params[static_cast<int>(SinOsc::ParamId::pitch)].getValue();
+  pitch += inputs[static_cast<int>(SinOsc::InputId::pitch)].getVoltage();
+  return clamp(pitch, -4.f, 4.f);
+}
 
-  // Compute the sine output
-  float sine = std::sin(2.f * M_PI * phase);
-  // Audio signals are typically +/-5V
-  // https://vcvrack.com/manual/VoltageStandards
-  outputs[tftp::SinOsc::SINE_OUTPUT].setVoltage(5.f * sine);
-
-  // Blink light at 1Hz
-  blinkPhase += args.sampleTime;
-  if (blinkPhase >= 1.f) blinkPhase -= 1.f;
-  lights[tftp::SinOsc::BLINK_LIGHT].setBrightness(blinkPhase < 0.5f ? 1.f : 0.f);
+void SinOsc::process(const ProcessArgs& args) {
+  update_output(args);
+  blink(args, 2.f);
 };
 
+void SinOsc::update_output(const ProcessArgs& args) {
+  update_phase(args);
+  float sin = std::sin(2.f * M_PI * phase);
+  // Audio signals are typically +/-5V
+  // https://vcvrack.com/manual/VoltageStandards
+  outputs[static_cast<int>(SinOsc::OutputId::sin)].setVoltage(5.f * sin);
+}
+
+void SinOsc::update_phase(const ProcessArgs& args) {
+  phase += freq() * args.sampleTime;
+  if (phase >= 0.5f) phase -= 1.f;
+}
+
 struct SinOscWidget : ModuleWidget {
-  SinOscWidget(tftp::SinOsc* module) {
+  SinOscWidget(SinOsc* module) {
     setModule(module);
     setPanel(createPanel(asset::plugin(pluginInstance, "res/SinOsc.svg")));
 
@@ -45,12 +58,15 @@ struct SinOscWidget : ModuleWidget {
     Vec voctOutPos = mm2px(Vec(15.24, 102.949));
     Vec litePos = mm2px(Vec(15.24, 24.713));
 
-    addParam(createParamCentered<RoundBlackKnob>(pitchKnobPos, module, tftp::SinOsc::PITCH_PARAM));
-    addInput(createInputCentered<PJ301MPort>(voctInPos, module, tftp::SinOsc::PITCH_INPUT));
-    addOutput(createOutputCentered<PJ301MPort>(voctOutPos, module, tftp::SinOsc::SINE_OUTPUT));
-    addChild(
-        createLightCentered<MediumLight<RedLight>>(litePos, module, tftp::SinOsc::BLINK_LIGHT));
+    addParam(createParamCentered<RoundBlackKnob>(pitchKnobPos, module,
+                                                 static_cast<int>(SinOsc::ParamId::pitch)));
+    addInput(createInputCentered<PJ301MPort>(voctInPos, module,
+                                             static_cast<int>(SinOsc::InputId::pitch)));
+    addOutput(createOutputCentered<PJ301MPort>(voctOutPos, module,
+                                               static_cast<int>(SinOsc::OutputId::sin)));
+    addChild(createLightCentered<MediumLight<RedLight>>(litePos, module,
+                                                        static_cast<int>(SinOsc::LightId::blink)));
   }
 };
 
-Model* modelSinOsc = createModel<tftp::SinOsc, SinOscWidget>("SinOsc");
+Model* modelSinOsc = createModel<SinOsc, SinOscWidget>("SinOsc");
