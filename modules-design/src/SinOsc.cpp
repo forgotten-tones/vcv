@@ -58,14 +58,14 @@ struct SinOscWidget : ModuleWidget {
     Vec voctOutPos = mm2px(Vec(15.24, 102.949));
     Vec litePos = mm2px(Vec(15.24, 24.713));
 
-    addParam(createParamCentered<RoundBlackKnob>(pitchKnobPos, module,
-                                                 static_cast<int>(SinOsc::ParamId::pitch)));
-    addInput(createInputCentered<PJ301MPort>(voctInPos, module,
-                                             static_cast<int>(SinOsc::InputId::pitch)));
-    addOutput(createOutputCentered<PJ301MPort>(voctOutPos, module,
-                                               static_cast<int>(SinOsc::OutputId::sin)));
-    addChild(createLightCentered<MediumLight<RedLight>>(litePos, module,
-                                                        static_cast<int>(SinOsc::LightId::blink)));
+    int knob_pitch_id = static_cast<int>(SinOsc::ParamId::pitch);
+    int cv_pitch_id = static_cast<int>(SinOsc::InputId::pitch);
+    int cv_out_id = static_cast<int>(SinOsc::OutputId::sin);
+    int lite_id = static_cast<int>(SinOsc::LightId::blink);
+    addParam(createParamCentered<RoundBlackKnob>(pitchKnobPos, module, knob_pitch_id));
+    addInput(createInputCentered<PJ301MPort>(voctInPos, module, cv_pitch_id));
+    addOutput(createOutputCentered<PJ301MPort>(voctOutPos, module, cv_out_id));
+    addChild(createLightCentered<MediumLight<RedLight>>(litePos, module, lite_id));
   }
 };
 
