@@ -2,8 +2,8 @@
 
 void tftp::SinOsc::process(const ProcessArgs& args) {
   // Compute the frequency from the pitch parameter and input
-  float pitch = params[PITCH_PARAM].getValue();
-  pitch += inputs[PITCH_INPUT].getVoltage();
+  float pitch = params[tftp::SinOsc::PITCH_PARAM].getValue();
+  pitch += inputs[tftp::SinOsc::PITCH_INPUT].getVoltage();
   pitch = clamp(pitch, -4.f, 4.f);
   // The default pitch is C4 = 261.6256f
   float freq = dsp::FREQ_C4 * std::pow(2.f, pitch);
@@ -16,12 +16,12 @@ void tftp::SinOsc::process(const ProcessArgs& args) {
   float sine = std::sin(2.f * M_PI * phase);
   // Audio signals are typically +/-5V
   // https://vcvrack.com/manual/VoltageStandards
-  outputs[SINE_OUTPUT].setVoltage(5.f * sine);
+  outputs[tftp::SinOsc::SINE_OUTPUT].setVoltage(5.f * sine);
 
   // Blink light at 1Hz
   blinkPhase += args.sampleTime;
   if (blinkPhase >= 1.f) blinkPhase -= 1.f;
-  lights[BLINK_LIGHT].setBrightness(blinkPhase < 0.5f ? 1.f : 0.f);
+  lights[tftp::SinOsc::BLINK_LIGHT].setBrightness(blinkPhase < 0.5f ? 1.f : 0.f);
 };
 
 struct SinOscWidget : ModuleWidget {

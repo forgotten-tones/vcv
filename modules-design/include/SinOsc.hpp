@@ -21,10 +21,10 @@ struct SinOsc : Module {
   float blinkPhase = 0.f;
 
   SinOsc() {
-    config(PARAMS_LEN, INPUTS_LEN, OUTPUTS_LEN, LIGHTS_LEN);
-    configParam(PITCH_PARAM, 0.f, 1.f, 0.f, "");
-    configInput(PITCH_INPUT, "");
-    configOutput(SINE_OUTPUT, "");
+    config(SinOsc::PARAMS_LEN, SinOsc::INPUTS_LEN, SinOsc::OUTPUTS_LEN, SinOsc::LIGHTS_LEN);
+    configParam(SinOsc::PITCH_PARAM, 0.f, 1.f, 0.f, "");
+    configInput(SinOsc::PITCH_INPUT, "");
+    configOutput(SinOsc::SINE_OUTPUT, "");
   }
 
   void process(const ProcessArgs& args) override;
