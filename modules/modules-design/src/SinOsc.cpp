@@ -59,4 +59,4 @@ struct SinOscWidget : TFTPModuleWidget {
   }
 };
 
-Model* modelSinOsc = createModel<SinOsc, SinOscWidget>("SinOsc");
+Model* modelSinOsc = rack::createModel<SinOsc, SinOscWidget>("SinOsc");

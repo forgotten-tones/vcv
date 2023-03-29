@@ -2,9 +2,7 @@
 #ifdef DESIGN
 #include "SinOsc.hpp"
 #endif
-#ifdef DEV
 #include "Notes.hpp"
-#endif
 
 Plugin* tftpPlugins;
 
@@ -16,7 +14,7 @@ void init(rack::Plugin* p) {
   // For modules currently under development:
 
 #ifdef DEV
-  p->addModel(modelTFTPNotes);
+  p->addModel(modelNotes);
 #endif
 
   // For design modules:

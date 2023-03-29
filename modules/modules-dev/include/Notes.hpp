@@ -33,7 +33,7 @@ struct Notes : TFTPModule {
   void onReset() override;
   void process(const ProcessArgs& args) override;
   void fromJson(json_t* rootJ) override;
-  rootJ json_t* dataToJson() override;
+  json_t* dataToJson() override;
   void dataFromJson(json_t* rootJ) override;
 };
 

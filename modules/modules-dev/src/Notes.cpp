@@ -2,12 +2,12 @@
 
 using namespace tftp;
 
-void Notes::onReset() override {
+void Notes::onReset() {
   text = "";
   dirty = true;
 }
 
-void Notes::fromJson(json_t *rootJ) override {
+void Notes::fromJson(json_t *rootJ) {
   Module::fromJson(rootJ);
   // In <1.0, module used "text" property at root level.
   json_t *textJ = json_object_get(rootJ, "text");
@@ -15,20 +15,20 @@ void Notes::fromJson(json_t *rootJ) override {
   dirty = true;
 }
 
-json_t *Notes::dataToJson() override {
+json_t *Notes::dataToJson() {
   json_t *rootJ = json_object();
   json_object_set_new(rootJ, "text", json_stringn(text.c_str(), text.size()));
   return rootJ;
 }
 
-void Notes::dataFromJson(json_t *rootJ) override {
+void Notes::dataFromJson(json_t *rootJ) {
   json_t *textJ = json_object_get(rootJ, "text");
   if (textJ) text = json_string_value(textJ);
   dirty = true;
 }
 
 struct NotesTextField : LedDisplayTextField {
-  TFTPNotes *module;
+  Notes *module;
   NVGcolor bgColor = nvgRGBA(0.0, 0.0, 0.0, 0.0);
   NVGcolor color = nvgRGB(0x00, 0xff, 0x00);
 
@@ -80,3 +80,6 @@ struct NotesWidget : TFTPModuleWidget {
     }
     app::ModuleWidget::step();
   }
+};
+
+Model *modelNotes = rack::createModel<Notes, NotesWidget>("Notes");
