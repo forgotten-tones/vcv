@@ -27,58 +27,37 @@ void Notes::dataFromJson(json_t *rootJ) {
   dirty = true;
 }
 
-struct NotesTextField : LedDisplayTextField {
-  Notes *module;
-  NVGcolor bgColor = nvgRGBA(0.0, 0.0, 0.0, 0.0);
-  NVGcolor color = nvgRGB(0x00, 0xff, 0x00);
-
-  void step() override {
-    LedDisplayTextField::step();
-    if (module && module->dirty) {
-      setText(module->text);
-      module->dirty = false;
-    }
+void NotesTextField::step() {
+  LedDisplayTextField::step();
+  if (module && module->dirty) {
+    setText(module->text);
+    module->dirty = false;
   }
+}
 
-  void onChange(const ChangeEvent &e) override {
-    if (module) module->text = getText();
-  }
-};
+void NotesTextField::onChange(const ChangeEvent &e) {
+  if (module) module->text = getText();
+}
 
-struct NotesDisplay : LedDisplay {
-  NVGcolor bgColor = nvgRGBA(0.0, 0.0, 0.0, 0.0);
-  NVGcolor color = nvgRGB(0x00, 0xff, 0x00);
-  void setModule(Notes *module) {
-    NotesTextField *textField = createWidget<NotesTextField>(Vec(1.2, 0));
-    textField->box.size = box.size;
-    textField->multiline = true;
-    textField->module = module;
-    addChild(textField);
-  }
-};
+void NotesDisplay::setModule(Notes *module) {
+  Vec trPos = Vec(1.2, 0);
+  NotesTextField *textField = createWidget<NotesTextField>(trPos);
+  textField->box.size = box.size;
+  textField->multiline = true;
+  textField->module = module;
+  addChild(textField);
+}
 
 struct NotesWidget : TFTPModuleWidget {
-  NotesDisplay *notesDisplay;
-
   NotesWidget(Notes *module) {
     setModule(module);
-    setPanel("Notes");
+    setPanel("modules-dev/res/Notes");
     addScrews();
 
-    notesDisplay = createWidget<NotesDisplay>(mm2px(Vec(4.8, 10.5)));
+    NotesDisplay *notesDisplay = createWidget<NotesDisplay>(mm2px(Vec(4.8, 10.5)));
     notesDisplay->box.size = mm2px(Vec(92, 111.5));
     notesDisplay->setModule(module);
     addChild(notesDisplay);
-  }
-
-  void step() override {
-    Notes *wModule = dynamic_cast<Notes *>(module);
-    if (wModule->dirty) {
-      notesDisplay->color = wModule->color;
-      notesDisplay->bgColor = wModule->bgColor;
-      wModule->dirty = false;
-    }
-    app::ModuleWidget::step();
   }
 };
 
