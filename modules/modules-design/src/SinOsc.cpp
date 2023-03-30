@@ -40,7 +40,7 @@ void SinOsc::update_phase(const ProcessArgs& args) {
 struct SinOscWidget : TFTPModuleWidget {
   SinOscWidget(SinOsc* module) {
     setModule(module);
-    setPanel("SinOsc");
+    setPanel("modules-design/res/SinOsc");
     addScrews();
 
     Vec pitchKnobPos = mm2px(Vec(15.24, 48.957));

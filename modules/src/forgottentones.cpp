@@ -2,7 +2,9 @@
 #ifdef DESIGN
 #include "SinOsc.hpp"
 #endif
+#ifdef DEV
 #include "Notes.hpp"
+#endif
 
 Plugin* tftpPlugins;
 

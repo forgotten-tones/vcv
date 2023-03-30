@@ -16,7 +16,7 @@ void TFTPModuleWidget::addScrews() {
 }
 
 void TFTPModuleWidget::setPanel(std::string name) {
-  std::string svg = "res/" + name;
+  std::string svg = name;
   svg += ".svg";
   ModuleWidget::setPanel(createPanel(asset::plugin(tftpPlugins, svg)));
 }

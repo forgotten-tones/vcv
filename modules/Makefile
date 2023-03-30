@@ -30,12 +30,14 @@ ifdef DESIGN
 FLAGS += -DDESIGN=1
 FLAGS += -Imodules-design/include
 SOURCES += $(wildcard modules-design/src/*.cpp)
+DISTRIBUTABLES += modules-design/res
 endif
 
 ifdef DEV
 FLAGS += -DDEV=1
 FLAGS += -Imodules-dev/include
 SOURCES += $(wildcard modules-dev/src/*.cpp)
+DISTRIBUTABLES += modules-dev/res
 endif
 
 # Include the Rack plugin Makefile framework
