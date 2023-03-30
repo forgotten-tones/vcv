@@ -5,7 +5,7 @@
    viewBox="0 0 384 485.66933"
    version="1.1"
    id="svg34"
-   sodipodi:docname="TFTPNotes.svg"
+   sodipodi:docname="Notes.svg"
    inkscape:version="1.2.2 (b0a84865, 2022-12-01)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -40,12 +40,12 @@
      id="namedview36"
      showgrid="false"
      inkscape:zoom="2.4197772"
-     inkscape:cx="205.18418"
-     inkscape:cy="65.501899"
+     inkscape:cx="178.3222"
+     inkscape:cy="170.05698"
      inkscape:window-x="0"
      inkscape:window-y="38"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg34"
+     inkscape:current-layer="layer1"
      inkscape:showpageshadow="true"
      inkscape:pagecheckerboard="true"
      inkscape:deskcolor="#d1d1d1"
@@ -75,6 +75,18 @@
   </sodipodi:namedview>
   <defs
      id="defs7">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient37636">
+      <stop
+         style="stop-color:#0d2e0d;stop-opacity:1;"
+         offset="0"
+         id="stop37632" />
+      <stop
+         style="stop-color:#cccccc;stop-opacity:1;"
+         offset="1"
+         id="stop37634" />
+    </linearGradient>
     <linearGradient
        inkscape:collect="always"
        id="linearGradient12379">
@@ -121,13 +133,24 @@
     </linearGradient>
     <linearGradient
        inkscape:collect="always"
-       xlink:href="#linearGradient12379"
+       xlink:href="#linearGradient37636"
        id="linearGradient12381"
        x1="11.688792"
        y1="45.00185"
        x2="11.688792"
        y2="454.69403"
-       gradientUnits="userSpaceOnUse" />
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.97908445,0,0,1.0243171,4.0157871,2.904588)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient12379"
+       id="linearGradient36886"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.0039764,0,0,1.0381321,-0.76347222,-1.3692216)"
+       x1="11.688792"
+       y1="45.00185"
+       x2="11.688792"
+       y2="454.69403" />
   </defs>
   <g
      id="ff212d66-6d77-44f8-85c7-307f2d84ecf1"
@@ -136,10 +159,10 @@
      transform="scale(1.6000001,1.2783778)">
     <rect
        width="240"
-       height="380"
+       height="379.91064"
        fill="url(#a2d41a32-129a-467c-88bb-0081d4967003)"
        id="rect9"
-       style="fill:#ffffff;fill-opacity:1"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.999882"
        x="0"
        y="0" />
   </g>
@@ -184,21 +207,30 @@
     <rect
        id="rect6888"
        y="35.907291"
-       width="364.40924"
-       height="428.97641"
-       x="9.7953882"
-       style="display:inline;fill:url(#linearGradient12381);fill-opacity:1;stroke:none;stroke-width:1.44903;stroke-opacity:0.0621762"
-       inkscape:label="screen back"
-       ry="8.3250389" />
+       width="365.85828"
+       height="445.3342"
+       x="9.0708666"
+       style="display:inline;fill:url(#linearGradient36886);fill-opacity:1;stroke:none;stroke-width:1.47933;stroke-opacity:0.0621762"
+       inkscape:label="screen back grey"
+       ry="5.8847246" />
+    <rect
+       id="rect36521"
+       y="39.68504"
+       width="356.78741"
+       height="439.4079"
+       x="13.6063"
+       style="display:inline;fill:url(#linearGradient12381);fill-opacity:1;stroke:none;stroke-width:1.45112;stroke-opacity:0.0621762"
+       inkscape:label="grey-purple"
+       ry="8.5274801" />
     <rect
        id="textarea-layer-0"
        y="39.68504"
        width="347.71655"
-       height="421.41736"
+       height="439.4079"
        x="18.141733"
-       style="display:inline;fill:#0d2e0d;fill-opacity:1;stroke-width:1.40293"
+       style="display:inline;fill:#0d2e0d;fill-opacity:1;stroke-width:1.43256"
        inkscape:label="textarea"
-       ry="8.1783419" />
+       ry="5.1212602" />
     <g
        id="g8755"
        inkscape:label="scan lines"

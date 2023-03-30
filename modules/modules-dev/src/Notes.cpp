@@ -9,7 +9,6 @@ void Notes::onReset() {
 
 void Notes::fromJson(json_t *rootJ) {
   Module::fromJson(rootJ);
-  // In <1.0, module used "text" property at root level.
   json_t *textJ = json_object_get(rootJ, "text");
   if (textJ) text = json_string_value(textJ);
   dirty = true;
@@ -39,12 +38,15 @@ void NotesTextField::onChange(const ChangeEvent &e) {
   if (module) module->text = getText();
 }
 
+void NotesDisplay::draw(const DrawArgs &args) {}
+
 void NotesDisplay::setModule(Notes *module) {
   Vec trPos = Vec(1.2, 0);
   NotesTextField *textField = createWidget<NotesTextField>(trPos);
   textField->box.size = box.size;
   textField->multiline = true;
   textField->module = module;
+  textField->color = nvgRGB(0, 127, 0);
   addChild(textField);
 }
 
@@ -55,7 +57,7 @@ struct NotesWidget : TFTPModuleWidget {
     addScrews();
 
     NotesDisplay *notesDisplay = createWidget<NotesDisplay>(mm2px(Vec(4.8, 10.5)));
-    notesDisplay->box.size = mm2px(Vec(92, 111.5));
+    notesDisplay->box.size = mm2px(Vec(92, 116.2));
     notesDisplay->setModule(module);
     addChild(notesDisplay);
   }
