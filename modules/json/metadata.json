@@ -1,0 +1,16 @@
+{
+    "slug": "ForgottenTones",
+    "name": "Forgotten Tones",
+    "version": "2.0.2",
+    "license": "Apache-2.0",
+    "brand": "Forgotten Tones",
+    "author": "The Forgotten Tones Project",
+    "authorEmail": "duncan@forgottenton.es",
+    "authorUrl": "https://github.com/forgotten-tones/vcv",
+    "pluginUrl": "https://github.com/forgotten-tones/vcv/tree/main/modules",
+    "manualUrl": "https://github.com/forgotten-tones/vcv/tree/main/modules/docs",
+    "sourceUrl": "https://github.com/forgotten-tones/vcv/tree/main/modules",
+    "donateUrl": "",
+    "changelogUrl": "",
+    "modules": []
+}

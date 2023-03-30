@@ -26,20 +26,16 @@ RACK_INSTALL = ~/Documents/Rack2
 PLUGINS = $(RACK_INSTALL)/plugins
 TFPT = $(PLUGINS)/ForgottenTones
 
-JSON_MODS = "$(shell jq -c .modules json/plugin.json | tr -s ' ')"
-
 ifdef DESIGN
 FLAGS += -DDESIGN=1
 FLAGS += -Imodules-design/include
 SOURCES += $(wildcard modules-design/src/*.cpp)
-JSON_MODS += "$(shell jq -c . json/modules-design.json | tr -s ' ')"
 endif
 
 ifdef DEV
 FLAGS += -DDEV=1
 FLAGS += -Imodules-dev/include
 SOURCES += $(wildcard modules-dev/src/*.cpp)
-JSON_MODS += "$(shell jq -c . json/modules-dev.json | tr -s ' ')"
 endif
 
 # Include the Rack plugin Makefile framework
@@ -48,10 +44,10 @@ include $(RACK_DIR)/plugin.mk
 $(RACK_INSTALL):
 	@mkdir -p $(RACK_INSTALL)
 
-json-modules:
-	@echo "$(JSON_MODS)"
+plugin-json:
+	@DEV=$(DEV) DESIGN=$(DESIGN) ./json/regen.sh
 
-native-rebuild: clean all dist install
+native-rebuild: clean plugin-json all dist install
 
 rebuild:
 	@arch -x86_64 make native-rebuild DESIGN=$(DESIGN) DEV=$(DEV)

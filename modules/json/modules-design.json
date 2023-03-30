@@ -1,0 +1,11 @@
+[
+    {
+        "status": "DESIGN",
+        "slug": "SinOsc",
+        "name": "Simple Osc",
+        "description": "A simple sine oscillator",
+        "tags": [
+            "oscillator"
+        ]
+    }
+]

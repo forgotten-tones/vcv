@@ -1,0 +1,11 @@
+[
+    {
+        "status": "DEV",
+        "slug": "Notes",
+        "name": "Notes",
+        "description": "Keep patch notes in your rack",
+        "tags": [
+            "utility"
+        ]
+    }
+]
