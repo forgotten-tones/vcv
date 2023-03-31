@@ -8,10 +8,7 @@ void SinOsc::blink(const ProcessArgs& args, float hz) {
   lights[static_cast<int>(SinOsc::LightId::blink)].setBrightness(blinkPhase < 0.5f ? 1.f : 0.f);
 }
 
-float SinOsc::freq() {
-  // The default pitch is C4 = 261.6256f
-  return dsp::FREQ_C4 * std::pow(2.f, pitch());
-}
+float SinOsc::freq() { return dsp::FREQ_C4 * std::pow(2.f, pitch()); }
 
 float SinOsc::pitch() {
   float pitch = params[static_cast<int>(SinOsc::ParamId::pitch)].getValue();
@@ -27,8 +24,6 @@ void SinOsc::process(const ProcessArgs& args) {
 void SinOsc::update_output(const ProcessArgs& args) {
   update_phase(args);
   float sin = std::sin(2.f * M_PI * phase);
-  // Audio signals are typically +/-5V
-  // https://vcvrack.com/manual/VoltageStandards
   outputs[static_cast<int>(SinOsc::OutputId::sin)].setVoltage(5.f * sin);
 }
 

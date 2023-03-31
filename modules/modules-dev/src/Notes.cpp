@@ -46,7 +46,7 @@ void NotesDisplay::setModule(Notes *module) {
   textField->box.size = box.size;
   textField->multiline = true;
   textField->module = module;
-  textField->color = nvgRGB(0, 127, 0);
+  textField->color = nvgRGB(0, 255, 0);
   addChild(textField);
 }
 

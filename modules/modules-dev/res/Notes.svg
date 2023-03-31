@@ -39,9 +39,9 @@
      inkscape:window-height="1051"
      id="namedview36"
      showgrid="false"
-     inkscape:zoom="2.4197772"
-     inkscape:cx="178.3222"
-     inkscape:cy="170.05698"
+     inkscape:zoom="19.358218"
+     inkscape:cx="40.215479"
+     inkscape:cy="51.528504"
      inkscape:window-x="0"
      inkscape:window-y="38"
      inkscape:window-maximized="1"
@@ -219,7 +219,7 @@
        width="356.78741"
        height="439.4079"
        x="13.6063"
-       style="display:inline;fill:url(#linearGradient12381);fill-opacity:1;stroke:none;stroke-width:1.45112;stroke-opacity:0.0621762"
+       style="display:inline;fill:url(#linearGradient12381);fill-opacity:1;stroke:none;stroke-width:1.45133865;stroke-opacity:0.0621762;stroke-dasharray:none"
        inkscape:label="grey-purple"
        ry="8.5274801" />
     <rect
@@ -235,7 +235,7 @@
        id="g8755"
        inkscape:label="scan lines"
        style="fill:#000000;fill-opacity:1;stroke:#818181;stroke-opacity:0.0621762"
-       transform="matrix(0.93867429,0,0,0.97652871,11.59586,0.73734671)">
+       transform="matrix(0.93867429,0,0,0.97652871,11.59586,1.3572385)">
       <g
          id="g8006"
          transform="translate(-3.5836537e-4,228.443)"
@@ -243,34 +243,8 @@
         <g
            id="g7960"
            transform="matrix(6.3881144,0,0,1.0186035,7.4832657,213.61497)"
-           style="fill:#000000;fill-opacity:1;stroke:#818181;stroke-width:0.995008;stroke-opacity:0.0621762"
+           style="display:inline;fill:#000000;fill-opacity:1;stroke:#818181;stroke-width:0.995008;stroke-opacity:0.0621762"
            inkscape:label="lines group 1">
-          <line
-             fill="none"
-             stroke="param(fill)"
-             stroke-width="0.35502"
-             stroke-linecap="square"
-             stroke-linejoin="round"
-             stroke-miterlimit="500"
-             x1="0.81815529"
-             y1="27.271847"
-             x2="56.862865"
-             y2="27.271847"
-             id="line3459"
-             style="display:inline;fill:#000000;fill-opacity:1;stroke:#818181;stroke-width:0.351355;stroke-dasharray:none;stroke-opacity:0.0621762" />
-          <line
-             fill="none"
-             stroke="param(fill)"
-             stroke-width="0.35502"
-             stroke-linecap="square"
-             stroke-linejoin="round"
-             stroke-miterlimit="500"
-             x1="0.48472166"
-             y1="24.664846"
-             x2="57.305965"
-             y2="24.664846"
-             id="line3461"
-             style="display:inline;fill:#000000;fill-opacity:1;stroke:#818181;stroke-width:0.35378;stroke-dasharray:none;stroke-opacity:0.0621762" />
           <line
              fill="none"
              stroke="param(fill)"
@@ -392,7 +366,7 @@
         <g
            id="g8004"
            transform="matrix(6.3881144,0,0,1.0186035,7.6140708,155.15597)"
-           style="fill:#000000;fill-opacity:1;stroke:#818181;stroke-width:0.995008;stroke-opacity:0.0621762"
+           style="display:inline;fill:#000000;fill-opacity:1;stroke:#818181;stroke-width:0.995008;stroke-opacity:0.0621762"
            inkscape:label="lines group 2">
           <line
              fill="none"
@@ -666,6 +640,142 @@
              x2="57.550999"
              y2="3.911"
              id="line8002"
+             style="display:inline;fill:#000000;fill-opacity:1;stroke:#818181;stroke-opacity:0.0621762" />
+        </g>
+        <g
+           id="g43593"
+           transform="matrix(6.3881144,0,0,1.0186035,7.4832657,234.81876)"
+           style="fill:#000000;fill-opacity:1;stroke:#818181;stroke-width:0.995008;stroke-opacity:0.0621762"
+           inkscape:label="lines group 3">
+          <line
+             fill="none"
+             stroke="param(fill)"
+             stroke-width="0.35502"
+             stroke-linecap="square"
+             stroke-linejoin="round"
+             stroke-miterlimit="500"
+             x1="0.81815529"
+             y1="27.271847"
+             x2="56.862865"
+             y2="27.271847"
+             id="line43571"
+             style="display:inline;fill:#000000;fill-opacity:1;stroke:#818181;stroke-width:0.351355;stroke-dasharray:none;stroke-opacity:0.0621762" />
+          <line
+             fill="none"
+             stroke="param(fill)"
+             stroke-width="0.35502"
+             stroke-linecap="square"
+             stroke-linejoin="round"
+             stroke-miterlimit="500"
+             x1="0.48472166"
+             y1="24.664846"
+             x2="57.305965"
+             y2="24.664846"
+             id="line43573"
+             style="display:inline;fill:#000000;fill-opacity:1;stroke:#818181;stroke-width:0.35378;stroke-dasharray:none;stroke-opacity:0.0621762" />
+          <line
+             fill="none"
+             stroke="param(fill)"
+             stroke-width="0.35502"
+             stroke-linecap="square"
+             stroke-linejoin="round"
+             stroke-miterlimit="500"
+             x1="0.178"
+             y1="22.055845"
+             x2="57.550999"
+             y2="22.055845"
+             id="line43575"
+             style="display:inline;fill:#000000;fill-opacity:1;stroke:#818181;stroke-width:0.355494;stroke-dasharray:none;stroke-opacity:0.0621762" />
+          <line
+             fill="none"
+             stroke="param(fill)"
+             stroke-width="0.35502"
+             stroke-linecap="square"
+             stroke-linejoin="round"
+             stroke-miterlimit="500"
+             x1="0.178"
+             y1="19.448845"
+             x2="57.550999"
+             y2="19.448845"
+             id="line43577"
+             style="display:inline;fill:#000000;fill-opacity:1;stroke:#818181;stroke-width:0.355494;stroke-dasharray:none;stroke-opacity:0.0621762" />
+          <line
+             fill="none"
+             stroke="param(fill)"
+             stroke-width="0.35502"
+             stroke-linecap="square"
+             stroke-linejoin="round"
+             stroke-miterlimit="500"
+             x1="0.178"
+             y1="16.950001"
+             x2="57.550999"
+             y2="16.950001"
+             id="line43579"
+             style="display:inline;fill:#000000;fill-opacity:1;stroke:#818181;stroke-width:0.355494;stroke-dasharray:none;stroke-opacity:0.0621762" />
+          <line
+             fill="none"
+             stroke="param(fill)"
+             stroke-width="0.35502"
+             stroke-linecap="square"
+             stroke-linejoin="round"
+             stroke-miterlimit="500"
+             x1="0.178"
+             y1="14.343"
+             x2="57.550999"
+             y2="14.343"
+             id="line43581"
+             style="display:inline;fill:#000000;fill-opacity:1;stroke:#818181;stroke-opacity:0.0621762" />
+          <line
+             fill="none"
+             stroke="param(fill)"
+             stroke-width="0.35502"
+             stroke-linecap="square"
+             stroke-linejoin="round"
+             stroke-miterlimit="500"
+             x1="0.178"
+             y1="11.734"
+             x2="57.550999"
+             y2="11.734"
+             id="line43583"
+             style="display:inline;fill:#000000;fill-opacity:1;stroke:#818181;stroke-opacity:0.0621762" />
+          <line
+             fill="none"
+             stroke="param(fill)"
+             stroke-width="0.35502"
+             stroke-linecap="square"
+             stroke-linejoin="round"
+             stroke-miterlimit="500"
+             x1="0.178"
+             y1="9.1269999"
+             x2="57.550999"
+             y2="9.1269999"
+             id="line43585"
+             style="display:inline;fill:#000000;fill-opacity:1;stroke:#818181;stroke-opacity:0.0621762" />
+          <line
+             fill="none"
+             stroke="param(fill)"
+             stroke-width="0.35502"
+             stroke-linecap="square"
+             stroke-linejoin="round"
+             stroke-miterlimit="500"
+             x1="0.178"
+             y1="6.5190001"
+             x2="57.550999"
+             y2="6.5190001"
+             id="line43587"
+             style="display:inline;fill:#000000;fill-opacity:1;stroke:#818181;stroke-opacity:0.0621762" />
+          <line
+             fill="none"
+             stroke="param(fill)"
+             stroke-width="0.35502"
+             stroke-linecap="square"
+             stroke-linejoin="round"
+             stroke-miterlimit="500"
+             x1="0.178"
+             y1="3.911"
+             x2="57.550999"
+             y2="3.911"
+             id="line43589"
              style="display:inline;fill:#000000;fill-opacity:1;stroke:#818181;stroke-opacity:0.0621762" />
         </g>
       </g>
