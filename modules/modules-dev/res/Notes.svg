@@ -39,12 +39,12 @@
      inkscape:window-height="1051"
      id="namedview36"
      showgrid="false"
-     inkscape:zoom="19.358218"
-     inkscape:cx="40.215479"
-     inkscape:cy="51.528504"
+     inkscape:zoom="1.9063429"
+     inkscape:cx="166.54926"
+     inkscape:cy="255.72525"
      inkscape:window-x="0"
      inkscape:window-y="38"
-     inkscape:window-maximized="1"
+     inkscape:window-maximized="0"
      inkscape:current-layer="layer1"
      inkscape:showpageshadow="true"
      inkscape:pagecheckerboard="true"
@@ -77,9 +77,21 @@
      id="defs7">
     <linearGradient
        inkscape:collect="always"
-       id="linearGradient37636">
+       id="linearGradient44361">
+      <stop
+         style="stop-color:#0d1a0d;stop-opacity:1;"
+         offset="0"
+         id="stop44357" />
       <stop
          style="stop-color:#0d2e0d;stop-opacity:1;"
+         offset="1"
+         id="stop44359" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient37636">
+      <stop
+         style="stop-color:#0d1a0d;stop-opacity:1;"
          offset="0"
          id="stop37632" />
       <stop
@@ -151,6 +163,15 @@
        y1="45.00185"
        x2="11.688792"
        y2="454.69403" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient44361"
+       id="linearGradient44363"
+       x1="188.10068"
+       y1="41.694653"
+       x2="188.10068"
+       y2="474.46048"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <g
      id="ff212d66-6d77-44f8-85c7-307f2d84ecf1"
@@ -228,14 +249,14 @@
        width="347.71655"
        height="439.4079"
        x="18.141733"
-       style="display:inline;fill:#0d2e0d;fill-opacity:1;stroke-width:1.43256"
+       style="display:inline;fill:url(#linearGradient44363);fill-opacity:1;stroke-width:1.43256"
        inkscape:label="textarea"
        ry="5.1212602" />
     <g
        id="g8755"
        inkscape:label="scan lines"
        style="fill:#000000;fill-opacity:1;stroke:#818181;stroke-opacity:0.0621762"
-       transform="matrix(0.93867429,0,0,0.97652871,11.59586,1.3572385)">
+       transform="matrix(0.93867966,0,0,0.97203895,11.594829,1.5470587)">
       <g
          id="g8006"
          transform="translate(-3.5836537e-4,228.443)"
