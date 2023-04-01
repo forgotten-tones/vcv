@@ -4,11 +4,13 @@
 #endif
 #ifdef DEV
 #include "Notes.hpp"
+#include "REPL.hpp"
 #endif
 
-Plugin* tftpPlugins;
+Plugin *tftpPlugins;
 
-void init(rack::Plugin* p) {
+void init(rack::Plugin *p)
+{
   tftpPlugins = p;
 
   // Add released modules here
@@ -17,6 +19,7 @@ void init(rack::Plugin* p) {
 
 #ifdef DEV
   p->addModel(modelNotes);
+  p->addModel(modelREPL);
 #endif
 
   // For design modules:

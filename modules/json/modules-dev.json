@@ -7,5 +7,14 @@
         "tags": [
             "utility"
         ]
+    },
+    {
+        "status": "DEV",
+        "slug": "REPL",
+        "name": "REPL",
+        "description": "A Lisp REPL for managing and debugging signals",
+        "tags": [
+            "logic", "multiple", "utility"
+        ]
     }
 ]

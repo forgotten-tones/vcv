@@ -21,7 +21,7 @@ DISTRIBUTABLES += res
 DISTRIBUTABLES += $(wildcard LICENSE*)
 DISTRIBUTABLES += $(wildcard presets)
 
-RACK_APP = ~/Applications/Audio/VCV\ Rack\ 2\ Pro
+RACK_APP = /Applications/VCV\ Rack\ 2\ Pro.app/Contents/MacOS/Rack
 RACK_INSTALL = ~/Documents/Rack2
 PLUGINS = $(RACK_INSTALL)/plugins
 TFPT = $(PLUGINS)/ForgottenTones
@@ -73,10 +73,13 @@ rebuild-log: rebuild
 	@tail -f $(RACK_INSTALL)/log.txt
 
 uninstall:
-	@rm -rf $(TFPT)
+	@rm -rf $(TFPT)*
 
 log:
 	@grep Forgotten $(RACK_INSTALL)/log.txt
+
+tail-log:
+	@tail -f Forgotten $(RACK_INSTALL)/log.txt
 
 show-plugins:
 	ls -al $(PLUGINS)
@@ -85,6 +88,6 @@ show-installed:
 	ls -al $(TFPT)*
 
 open:
-	open -a $(RACK_APP)
+	$(RACK_APP)
 
 rebuild-open: rebuild open

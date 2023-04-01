@@ -1,7 +1,7 @@
 {
   "slug": "ForgottenTones",
   "name": "Forgotten Tones",
-  "version": "2.0.1",
+  "version": "2.0.1-dev",
   "license": "Apache-2.0",
   "brand": "Forgotten Tones",
   "author": "The Forgotten Tones Project",
@@ -28,6 +28,17 @@
       "name": "Notes",
       "description": "Keep patch notes (or other text) in your rack",
       "tags": [
+        "utility"
+      ]
+    },
+    {
+      "status": "DEV",
+      "slug": "REPL",
+      "name": "REPL",
+      "description": "A Lisp REPL for managing and debugging signals",
+      "tags": [
+        "logic",
+        "multiple",
         "utility"
       ]
     }
