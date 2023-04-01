@@ -25,6 +25,8 @@ RACK_APP = /Applications/VCV\ Rack\ 2\ Pro.app/Contents/MacOS/Rack
 RACK_INSTALL = ~/Documents/Rack2
 PLUGINS = $(RACK_INSTALL)/plugins
 TFPT = $(PLUGINS)/ForgottenTones
+DEPS_DIR = ./third-party
+S_EXPRS = $(DEPS_DIR)/sexpresso
 
 ifdef DESIGN
 FLAGS += -DDESIGN=1
@@ -36,7 +38,11 @@ endif
 ifdef DEV
 FLAGS += -DDEV=1
 FLAGS += -Imodules-dev/include
+FLAGS += -I$(S_EXPRS)/sexpresso
+FLAGS += -I$(S_EXPRS)/sexpresso_std
 SOURCES += $(wildcard modules-dev/src/*.cpp)
+SOURCES += $(wildcard $(S_EXPRS)/sexpresso/*.cpp)
+SOURCES += $(wildcard $(S_EXPRS)/sexpresso_std/*.cpp)
 DISTRIBUTABLES += modules-dev/res
 endif
 
@@ -91,3 +97,11 @@ open:
 	$(RACK_APP)
 
 rebuild-open: rebuild open
+
+deps: $(S_EXPRS)
+
+$(DEPS_DIR):
+	mkdir -p $(DEPS_DIR)
+
+$(S_EXPRS): $(DEPS_DIR)
+	git clone git@github.com:mmp/sexpresso.git $(S_EXPRS)
