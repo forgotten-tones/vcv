@@ -28,6 +28,7 @@ TFPT = $(PLUGINS)/ForgottenTones
 DEPS_DIR = ./third-party
 S_EXPRS = $(DEPS_DIR)/sexpresso
 PLOG = $(DEPS_DIR)/plog
+TERM_COLOR = $(DEPS_DIR)/termcolor
 
 ifdef DESIGN
 FLAGS += -DDESIGN=1
@@ -57,7 +58,7 @@ $(RACK_INSTALL):
 plugin-json:
 	@DEV=$(DEV) DESIGN=$(DESIGN) ./json/regen.sh
 
-native-rebuild: clean plugin-json all dist install
+native-rebuild: clean deps plugin-json all dist install
 
 rebuild:
 	@arch -x86_64 make native-rebuild DESIGN=$(DESIGN) DEV=$(DEV)
@@ -100,7 +101,7 @@ open:
 
 rebuild-open: rebuild open
 
-deps: $(S_EXPRS) $(PLOG)
+deps: $(S_EXPRS) $(PLOG) $(TERM_COLOR)
 
 $(DEPS_DIR):
 	mkdir -p $(DEPS_DIR)
@@ -110,3 +111,6 @@ $(S_EXPRS): $(DEPS_DIR)
 
 $(PLOG):
 	git clone git@github.com:SergiusTheBest/plog.git $(PLOG)
+
+$(TERM_COLOR):
+	git clone git@github.com:ikalnytskyi/termcolor.git $(TERM_COLOR)

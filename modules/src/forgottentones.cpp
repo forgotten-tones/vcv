@@ -1,8 +1,7 @@
-#include <plog/Formatters/TxtFormatter.h>
-#include <plog/Initializers/ConsoleInitializer.h>
-#include <plog/Appenders/ColorConsoleAppender.h>
-
 #include "forgottentones.hpp"
+#include <plog/Appenders/ColorConsoleAppender.h>
+#include <plog/Initializers/ConsoleInitializer.h>
+#include <tftp_logger.hpp>
 #ifdef DESIGN
 #include "SinOsc.hpp"
 #endif
@@ -13,9 +12,8 @@
 
 Plugin *tftpPlugins;
 
-void init(rack::Plugin *p)
-{
-  static plog::ColorConsoleAppender<plog::TxtFormatter> consoleAppender;
+void init(rack::Plugin *p) {
+  static plog::ConsoleAppender<tftp::log::TxtFormatter> consoleAppender;
   plog::init(plog::verbose, &consoleAppender);
 
   tftpPlugins = p;
