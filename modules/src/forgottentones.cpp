@@ -1,3 +1,7 @@
+#include <plog/Formatters/TxtFormatter.h>
+#include <plog/Initializers/ConsoleInitializer.h>
+#include <plog/Appenders/ColorConsoleAppender.h>
+
 #include "forgottentones.hpp"
 #ifdef DESIGN
 #include "SinOsc.hpp"
@@ -11,6 +15,9 @@ Plugin *tftpPlugins;
 
 void init(rack::Plugin *p)
 {
+  static plog::ColorConsoleAppender<plog::TxtFormatter> consoleAppender;
+  plog::init(plog::verbose, &consoleAppender);
+
   tftpPlugins = p;
 
   // Add released modules here

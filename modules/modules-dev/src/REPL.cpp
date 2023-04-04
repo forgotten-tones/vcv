@@ -2,7 +2,9 @@
 #include <string>
 #include <cstdint>
 #include <ostream>
+
 #include "sexpresso.hpp"
+#include <plog/Log.h>
 
 #include "REPL.hpp"
 #include "str.hpp"
@@ -17,7 +19,6 @@ namespace tftp
     std::string welcome = "Welcome to the Forgotten Tones VCV Rack REPL";
 
     std::string banner() { return welcome + ", v" + version + "\n\n" + prompt; }
-
     std::string entry(std::string &cmd)
     {
       return cmd.substr(prompt.length(), cmd.length() - prompt.length());
@@ -29,7 +30,7 @@ using namespace tftp;
 
 void REPL::reset()
 {
-  DEBUG("Calling reset ...");
+  PLOG_INFO << "Calling reset ...";
   // TODO: change to "screen" ... and add one for "history"
   text = tftp::repl::banner();
   dirty = true;
@@ -39,7 +40,7 @@ void REPL::onReset() { this->reset(); }
 
 void REPL::fromJson(json_t *rootJ)
 {
-  DEBUG("loading data from JSON ...");
+  PLOG_INFO << "loading data from JSON ...";
   Module::fromJson(rootJ);
   json_t *textJ = json_object_get(rootJ, "text");
   if (textJ)
@@ -49,7 +50,7 @@ void REPL::fromJson(json_t *rootJ)
 
 json_t *REPL::dataToJson()
 {
-  DEBUG("storing data as JSON ...");
+  PLOG_INFO << "storing data as JSON ...";
   json_t *rootJ = json_object();
   json_object_set_new(rootJ, "text", json_stringn(text.c_str(), text.size()));
   return rootJ;
@@ -57,7 +58,7 @@ json_t *REPL::dataToJson()
 
 void REPL::dataFromJson(json_t *rootJ)
 {
-  DEBUG("extracting data from JSON ...");
+  PLOG_INFO << "extracting data from JSON ...";
   json_t *textJ = json_object_get(rootJ, "text");
   if (textJ)
     text = json_string_value(textJ);
@@ -69,7 +70,7 @@ void REPLTextField::step()
   LedDisplayTextField::step();
   if (module && module->dirty)
   {
-    DEBUG("Performing text update in 'step' ...");
+    PLOG_INFO << "Performing text update in 'step' ...";
     setText(module->text);
     module->dirty = false;
   }
@@ -80,23 +81,23 @@ void REPLTextField::onChange(const ChangeEvent &e)
   if (module)
   {
     std::string newText = getText() + "\n";
-    DEBUG("New text: %s", newText.c_str());
+    PLOG_DEBUG << "New text: %s", newText.c_str();
     std::vector<std::string> tokens = tftp::str::tokenize(newText, '\n');
-    DEBUG("Logging tokens (lines) ...");
+    PLOG_DEBUG << "Logging tokens (lines) ...";
     for (auto line : tokens)
-      DEBUG("\tline: %s", line.c_str());
+      PLOG_VERBOSE << "\tline: %s", line.c_str();
 
     std::string last = tftp::str::lastLine(newText);
-    DEBUG("Got text change event (last): %s", last.c_str());
+    PLOG_DEBUG << "Got text change event (last): %s", last.c_str();
     std::string cmd = tftp::str::penultimateLine(newText);
-    DEBUG("Got text change event (cmd): %s", cmd.c_str());
+    PLOG_DEBUG << "Got text change event (cmd): %s", cmd.c_str();
     if (str::startsWith(last, repl::prompt))
     {
       std::string entry = repl::entry(last);
-      DEBUG("Got entry: %s", entry.c_str());
+      PLOG_DEBUG << "Got entry: %s", entry.c_str();
       newText += "You typed: " + entry + "\n" + repl::prompt;
       auto sexp = sexpresso::parse(entry);
-      DEBUG("Parsed operation: %s", sexp.getChild(1).toString().c_str());
+      PLOG_DEBUG << "Parsed operation: %s", sexp.getChild(1).toString().c_str();
       module->dirty = true;
     }
 

@@ -27,6 +27,7 @@ PLUGINS = $(RACK_INSTALL)/plugins
 TFPT = $(PLUGINS)/ForgottenTones
 DEPS_DIR = ./third-party
 S_EXPRS = $(DEPS_DIR)/sexpresso
+PLOG = $(DEPS_DIR)/plog
 
 ifdef DESIGN
 FLAGS += -DDESIGN=1
@@ -40,6 +41,7 @@ FLAGS += -DDEV=1
 FLAGS += -Imodules-dev/include
 FLAGS += -I$(S_EXPRS)/sexpresso
 FLAGS += -I$(S_EXPRS)/sexpresso_std
+FLAGS += -I$(PLOG)/include
 SOURCES += $(wildcard modules-dev/src/*.cpp)
 SOURCES += $(wildcard $(S_EXPRS)/sexpresso/*.cpp)
 SOURCES += $(wildcard $(S_EXPRS)/sexpresso_std/*.cpp)
@@ -98,10 +100,13 @@ open:
 
 rebuild-open: rebuild open
 
-deps: $(S_EXPRS)
+deps: $(S_EXPRS) $(PLOG)
 
 $(DEPS_DIR):
 	mkdir -p $(DEPS_DIR)
 
 $(S_EXPRS): $(DEPS_DIR)
 	git clone git@github.com:mmp/sexpresso.git $(S_EXPRS)
+
+$(PLOG):
+	git clone git@github.com:SergiusTheBest/plog.git $(PLOG)
