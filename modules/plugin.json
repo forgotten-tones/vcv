@@ -41,6 +41,15 @@
         "multiple",
         "utility"
       ]
+    },
+    {
+      "status": "DEV",
+      "slug": "Bash",
+      "name": "Bash Shell",
+      "description": "A Bash system shell",
+      "tags": [
+        "utility"
+      ]
     }
   ]
 }

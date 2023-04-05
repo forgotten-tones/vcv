@@ -9,6 +9,7 @@
 #ifdef DEV
 #include "Notes.hpp"
 #include "REPL.hpp"
+#include "Bash.hpp"
 #define LOG_LEVEL() plog::verbose
 #endif
 #ifndef DEV
@@ -17,7 +18,8 @@
 
 Plugin *tftpPlugins;
 
-void init(rack::Plugin *p) {
+void init(rack::Plugin *p)
+{
   static plog::ConsoleAppender<tftp::log::TxtFormatter> consoleAppender;
   plog::init(LOG_LEVEL(), &consoleAppender);
 
@@ -37,6 +39,7 @@ void init(rack::Plugin *p) {
 #ifdef DEV
   p->addModel(modelNotes);
   p->addModel(modelREPL);
+  p->addModel(modelBash);
 #endif
 
   // For design modules:
