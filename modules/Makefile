@@ -25,6 +25,8 @@ RACK_APP = /Applications/VCV\ Rack\ 2\ Pro.app/Contents/MacOS/Rack
 RACK_INSTALL = ~/Documents/Rack2
 PLUGINS = $(RACK_INSTALL)/plugins
 TFPT = $(PLUGINS)/ForgottenTones
+
+# Deps
 DEPS_DIR = ./third-party
 S_EXPRS = $(DEPS_DIR)/sexpresso
 PLOG = $(DEPS_DIR)/plog

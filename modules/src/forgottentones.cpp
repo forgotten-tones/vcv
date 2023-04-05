@@ -9,13 +9,17 @@
 #ifdef DEV
 #include "Notes.hpp"
 #include "REPL.hpp"
+#define LOG_LEVEL() plog::verbose
+#endif
+#ifndef DEV
+#define LOG_LEVEL() plog::error
 #endif
 
 Plugin *tftpPlugins;
 
 void init(rack::Plugin *p) {
   static plog::ConsoleAppender<tftp::log::TxtFormatter> consoleAppender;
-  plog::init(plog::verbose, &consoleAppender);
+  plog::init(LOG_LEVEL(), &consoleAppender);
 
   PLOG_FATAL << "This is a fatal log message test";
   PLOG_ERROR << "This is an error log message test";
