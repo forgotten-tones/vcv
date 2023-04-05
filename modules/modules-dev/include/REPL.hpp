@@ -23,7 +23,7 @@ struct REPL : TFTPModule {
   json_t *dataToJson() override;
   void fromJson(json_t *rootJ) override;
   void onReset() override;
-  void reset();
+  std::string reset();
 };
 
 struct REPLTextField : LedDisplayTextField {

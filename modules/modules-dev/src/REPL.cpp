@@ -23,14 +23,14 @@ std::string entry(std::string &cmd) {
 
 using namespace tftp;
 
-void REPL::reset() {
+std::string REPL::reset() {
   PLOG_INFO << "Calling reset ...";
-  // TODO: change to "screen" ... and add one for "history"
-  text = tftp::repl::banner();
+  // TODO: change "text" to "screen" ... and add one for "history"
   dirty = true;
+  return tftp::repl::banner();
 }
 
-void REPL::onReset() { this->reset(); }
+void REPL::onReset() { text = this->reset(); }
 
 void REPL::fromJson(json_t *rootJ) {
   PLOG_INFO << "loading data from JSON ...";
@@ -64,28 +64,33 @@ void REPLTextField::step() {
 }
 
 void REPLTextField::onChange(const ChangeEvent &e) {
+  bool changed = false;
   if (module) {
     std::string newText = getText() + "\n";
-    PLOG_DEBUG << "New text: %s", newText.c_str();
+    PLOG_DEBUG.printf("New text: %s", newText.c_str());
     std::vector<std::string> tokens = tftp::str::tokenize(newText, '\n');
     PLOG_DEBUG << "Logging tokens (lines) ...";
-    for (auto line : tokens) PLOG_VERBOSE << "\tline: %s", line.c_str();
+    for (auto line : tokens) PLOG_VERBOSE.printf("\tline: %s", line.c_str());
 
     std::string last = tftp::str::lastLine(newText);
-    PLOG_DEBUG << "Got text change event (last): %s", last.c_str();
+    PLOG_DEBUG.printf("Got text change event (last): %s", last.c_str());
     std::string cmd = tftp::str::penultimateLine(newText);
-    PLOG_DEBUG << "Got text change event (cmd): %s", cmd.c_str();
+    PLOG_DEBUG.printf("Got text change event (cmd): %s", cmd.c_str());
     if (str::startsWith(last, repl::prompt)) {
       std::string entry = repl::entry(last);
-      PLOG_DEBUG << "Got entry: %s", entry.c_str();
+      PLOG_DEBUG.printf("Got entry: %s", entry.c_str());
       newText += "You typed: " + entry + "\n" + repl::prompt;
-      //   auto sexp = sexpresso::parse(entry);
-      //   PLOG_DEBUG << "Parsed operation: %s", sexp.getChild(1).toString().c_str();
-      // XXX temporary:
-      //   if (entry == "(clear)") {
-      //     PLOG_DEBUG << "Clearing terminal ...";
-      //     module->reset();
-      //   }
+      if (!entry.empty()) {
+        auto sexp = sexpresso::parse(entry);
+        std::string op = sexp.getChild(0).toString();
+        PLOG_DEBUG.printf("Parsed operation: %s", op.c_str());
+        // XXX temporary:
+        if (op == "clear") {
+          PLOG_DEBUG << "Clearing terminal ...";
+          newText = module->reset();
+          changed = true;
+        }
+      }
       module->dirty = true;
     }
 

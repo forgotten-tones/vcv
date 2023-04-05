@@ -39,14 +39,17 @@ endif
 
 ifdef DEV
 FLAGS += -DDEV=1
+FLAGS += -DPLOG_CAPTURE_FILE
 FLAGS += -Imodules-dev/include
 FLAGS += -I$(S_EXPRS)/sexpresso
 FLAGS += -I$(S_EXPRS)/sexpresso_std
 FLAGS += -I$(PLOG)/include
+FLAGS += -I$(TERM_COLOR)/include
 SOURCES += $(wildcard modules-dev/src/*.cpp)
 SOURCES += $(wildcard $(S_EXPRS)/sexpresso/*.cpp)
 SOURCES += $(wildcard $(S_EXPRS)/sexpresso_std/*.cpp)
 DISTRIBUTABLES += modules-dev/res
+
 endif
 
 # Include the Rack plugin Makefile framework
@@ -101,12 +104,12 @@ open:
 
 rebuild-open: rebuild open
 
-deps: $(S_EXPRS) $(PLOG) $(TERM_COLOR)
+deps: $(DEPS_DIR) $(S_EXPRS) $(PLOG) $(TERM_COLOR)
 
 $(DEPS_DIR):
 	mkdir -p $(DEPS_DIR)
 
-$(S_EXPRS): $(DEPS_DIR)
+$(S_EXPRS):
 	git clone git@github.com:mmp/sexpresso.git $(S_EXPRS)
 
 $(PLOG):
