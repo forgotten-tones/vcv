@@ -17,10 +17,20 @@ std::vector<std::string> toLines(const std::string &str) { return tokenize(str, 
 
 std::string lastLine(const std::string &str) {
   // return tokenize(str, '\n').back();
-  return tokenize(str, '\n').end()[-2];
+  std::vector<std::string> tokens = tokenize(str, '\n');
+  if (tokens.size() <= 2) {
+    return "";
+  }
+  return tokens.end()[-2];
 }
 
-std::string penultimateLine(const std::string &str) { return tokenize(str, '\n').end()[-3]; }
+std::string penultimateLine(const std::string &str) {
+  std::vector<std::string> tokens = tokenize(str, '\n');
+  if (tokens.size() <= 3) {
+    return "";
+  }
+  return tokens.end()[-3];
+}
 
 void rtrim(std::string &str) {
   str.erase(

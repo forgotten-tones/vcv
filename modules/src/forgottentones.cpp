@@ -7,10 +7,10 @@
 #include "SinOsc.hpp"
 #endif
 #ifdef DEV
+#include "Bash.hpp"
 #include "Notes.hpp"
 #include "REPL.hpp"
-#include "Bash.hpp"
-#define LOG_LEVEL() plog::verbose
+#define LOG_LEVEL() plog::debug
 #endif
 #ifndef DEV
 #define LOG_LEVEL() plog::error
@@ -18,8 +18,7 @@
 
 Plugin *tftpPlugins;
 
-void init(rack::Plugin *p)
-{
+void init(rack::Plugin *p) {
   static plog::ConsoleAppender<tftp::log::TxtFormatter> consoleAppender;
   plog::init(LOG_LEVEL(), &consoleAppender);
 
